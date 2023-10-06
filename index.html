@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Type</title>
+  <link rel="icon" href="assets/type_logo.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="globals.css">
+  <link rel="stylesheet" href="animations.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito Sans">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira Code">
+  <script src="script.js"></script>
+  <script src="modalHandler.js"></script>
+  <script src="cssGlobals.js"></script>
+  <script src="themes.js"></script>
+  <script src="cookies.js"></script>
+  <style id="globalTransitions"></style>
+</head>
+
+<body class="centered-children">
+  <div id="background"></div>
+  <div class="modal-background centered-children" id="themesModal" style="display: none">
+    <div class="modal">
+      <div class="centered-vertically" style="gap: 0.5em">
+        <img class="icon" style="width: 1.5em; height: 1.5em" src="assets/icon_themes.png">
+        <div class="title">Themes</div>
+      </div>
+      <div class="break"></div>
+      <div class="themes-container" id="themesContainer"></div>
+      <div class="break"></div>
+      <div class="input-container centered-vertically">
+        <input id="backgroundInput" type="text" placeholder="Background URL" autocomplete="off" spellcheck="false">
+        <button onclick="saveBackground()">Save</button>
+      </div>
+      <div class="break"></div>
+      <div class="background-toggle">
+        <div class="slider-container">
+          <div class="label">Brightness</div>
+          <input type="range" min="0" max="10" value="5" id="backgroundBrightness" class="slider">
+        </div>
+        <div class="slider-container">
+          <div class="label">Saturation</div>
+          <input type="range" min="0" max="10" value="10" id="backgroundSaturation" class="slider">
+        </div>
+        <div class="slider-container">
+          <div class="label">Opacity</div>
+          <input type="range" min="0" max="10" value="5" id="backgroundOpacity" class="slider">
+        </div>
+        <div class="slider-container">
+          <div class="label">Blur</div>
+          <input type="range" min="0" max="10" value="0" id="backgroundBlur" class="slider">
+        </div>
+      </div>
+      <div class="break"></div>
+      <div class="centered-vertically" style="gap: 0.5em">
+        <button class="button" id="bgcontain" onclick="setBackgroundFit(this, 'contain')">Contain</button>
+        <button class="button" id="bgcover" onclick="setBackgroundFit(this, 'cover')">Cover</button>
+        <button class="button" id="bgauto" onclick="setBackgroundFit(this, 'auto')">Auto</button>
+      </div>
+    </div>
+  </div>
+  <div class="themes-button centered-children" title="Themes" onclick="openModal(document.querySelector('#themesModal'))"><img style="width: 1.5em; height: 1.5em" class="icon" src="assets/icon_themes.png"></div>
+  <div class="wrapper centered-children">
+    <div class="selection-container centered-vertically">
+      <div class="selected-test" onclick="setTest(this, 10)">10</div>
+      <div onclick="setTest(this, 25)">25</div>
+      <div onclick="setTest(this, 50)">50</div>
+    </div>
+    <div class="content">
+      <div class="timer" id="timer">00:00:00</div>
+      <div>
+        <div id="caret">&nbsp;</div>
+        <div id="wordsContainer"></div>
+      </div>
+      <div class="results-container">
+        <div style="position: relative">
+          <div class="statistics" id="wpm"></div>
+          <div class="tooltip" id="wpmFull">NaN</div>
+        </div>
+        <div style="position: relative">
+          <div class="statistics" id="raw"></div>
+          <div class="tooltip" id="rawFull">NaN</div>
+        </div>
+        <div style="position: relative">
+          <div class="statistics" id="accuracy"></div>
+          <div class="tooltip" id="accFull">NaN</div>
+        </div>
+      </div>
+      <div id="shareContainer" class="share-container centered-vertically" style="display: none">
+        <div class="icon-container centered-children"><img class="icon" src="assets/icon_share.png"></div>
+        <div class="share centered-vertically" id="link">NaN</div>
+        <button id="shareButton" onclick="navigator.clipboard.writeText(document.querySelector('#link').innerHTML); this.className = 'selected-button-share'">Copy</button>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
